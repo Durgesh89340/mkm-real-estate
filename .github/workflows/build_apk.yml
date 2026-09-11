@@ -24,7 +24,10 @@ jobs:
           channel: 'stable'
 
       - name: Create Android wrapper files
-        run: flutter create . --project-name=mkm_real_estate --org=com.mkm.app
+        run: |
+          flutter create . --project-name=mkm_real_estate --org=com.mkm.app
+          sed -i 's/compileSdkVersion flutter.compileSdkVersion/compileSdkVersion 34/g' android/app/build.gradle
+          sed -i 's/targetSdkVersion flutter.targetSdkVersion/targetSdkVersion 34/g' android/app/build.gradle
 
       - name: Install dependencies
         run: flutter pub get
